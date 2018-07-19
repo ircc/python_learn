@@ -6,3 +6,4 @@
 
 # 排除目录
 redis/.idea
+.DS_Store
