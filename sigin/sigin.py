@@ -13,8 +13,13 @@ import time
 # import win32event
 # import win32evtlogutil
 
-# 获取时间的域名 
+# 阿里获取时间的域名 这里返回的是毫秒级时间戳
 url = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"
+
+# 苏宁获取时间接口
+# http://quan.suning.com/getSysTime.do
+# qq获取日间接口
+# http://cgi.im.qq.com/cgi-bin/cgi_svrtime
 
 # 通过指定域名获取当前时间的时间戳
 def get_information(url):
@@ -58,7 +63,9 @@ def get_time():
     date = str(ans[0])
     print(date)
 
-
+# 节假日判断接口
+# http://api.goseek.cn/
+# http://tool.bitefu.net/jiari/
 if __name__=='__main__':
     print(url)
     get_time()
