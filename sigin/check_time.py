@@ -1,13 +1,10 @@
 # gettime.py
 # -*- coding: utf-8 -*-
 
-# import urllib
 import requests
 import json
-import re
-import os
-import datetime
-import time
+# import os
+# import datetime
 
 # 通过web接口获取准确的时间
 
