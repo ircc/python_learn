@@ -8,7 +8,7 @@ import time
 url_login = "https://www.eteams.cn/teamsLogin"
 url_logout = "https://www.eteams.cn/teamsLogout"
 url_check = "https://www.eteams.cn/timecard/check.json"
-url_checks = "https://www.eteams.cn/timecard/checks.json"
+url_checks = "https://www.eteams.cn/app/timecard/checks.json"
 
 
 class eteams_sigin:
@@ -54,8 +54,15 @@ class eteams_sigin:
             return []        
         print("checks成功, ret.text: ", ret.text)
 
-    def check_in(self):
-        data = {"ETEAMSID":self.etemsid, "jsessionid":self.jsessionid, "userId":self.uid, "type":"CHECKIN", "longitude":"121.532931","latitude":"31.085895","checkAddress":"泛微软件大厦"}
+    def check_in(self, is_in):
+        data = {"ETEAMSID":self.etemsid, "jsessionid":self.jsessionid, "userId":self.uid}
+        if is_in:
+            data["type"] = "CHECKIN"            
+            data["longitude"] = "121.532931"
+            data["latitude"] = "31.085895"
+            data["checkAddress"] = "泛微软件大厦"
+        else:
+            data["type"] = "CHECKOUT"
         print(data)
         ret = requests.post(url_check, data)
         if 200 != ret.status_code:
@@ -68,7 +75,7 @@ if __name__ == '__main__':
     t = eteams_sigin('r1@im.com', '111111')
     t.login()
     time.sleep(1) # 休眠1秒
-    t.get_checks()
-    t.check_in()
+    # t.get_checks()
+    t.check_in(False)
     time.sleep(1) # 休眠1秒
     t.logout()
